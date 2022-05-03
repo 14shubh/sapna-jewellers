@@ -25,20 +25,22 @@ export class HomeComponent implements OnInit {
     private _cart: CartService,
     private _authenticate: AuthenticateService,
     private _favorite:FavoriteService,
-    private spinner: NgxSpinnerService
+    private _spinner: NgxSpinnerService
     
   ) 
   { 
-    // this.spinner.show();
+    this._spinner.show();
 
     this._category.CategoryList().subscribe((data) => {
       this.CategoryList = data;
     });
-    // this.spinner.hide();
  
     this._product.ProductList().subscribe((data) => {
       this.ProductList = data;
+
+      this._spinner.hide();
     });
+
   }
  
   AddToFavorite(productId: any) {

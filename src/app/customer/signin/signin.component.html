@@ -10,13 +10,13 @@
         <i class="fas fa-mail-bulk    "></i>
         <input required #user="ngModel" [(ngModel)]="email" type="email" name="email" placeholder="Email"  autocomplete="off">
       </div>
-      <span class="text-danger" *ngIf="user.errors?.['required'] && user.touched">Please enter email</span>
+      <span class="text-danger" *ngIf="user.errors?.required && user.touched">Please enter email</span>
 
       <div class="form-group">
         <i class="fa fa-lock" aria-hidden="true"></i>
         <input required #pass="ngModel" [(ngModel)]="password" type="password" name="password" placeholder="Password" autocomplete="off">
       </div>
-      <span class="text-danger" *ngIf="pass.errors?.['required'] && pass.touched">Please enter password</span>
+      <span class="text-danger" *ngIf="pass.errors?.required && pass.touched">Please enter password</span>
       
       <div class="links">
         <span>New User ? <a class="already" href="sign-up">Sign Up</a></span>
@@ -24,7 +24,7 @@
       </div>
 
       <div class="form-group signbtn">
-        <a  class="btn btn-primary signin" disabled="user.Invalid || pass.Invalid" (click)="signin()">Sign In</a>
+        <button  class="btn btn-primary signin" [disabled]="user.invalid || pass.invalid" (click)="signin()">Sign In</button>
       </div>
       <span class="or">
         OR

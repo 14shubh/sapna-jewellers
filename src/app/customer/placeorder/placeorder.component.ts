@@ -50,14 +50,14 @@ export class PlaceorderComponent implements OnInit {
 
         // },
         'handler': (response: any) => {
-          alert("payment Success")
+          // alert("payment Success")
 
-            // showSuccess(){
-            //   this._toastr.success('payment Success','something')
-            // }
-          // showSuccess() {
-          //   this._toastr.success('Hello world!', 'Toastr fun!');
-          // }
+            
+              
+                     
+          
+            // this._toastr.success('Hello world!', 'Toastr fun!');
+          
 
           // this._cart.placeOrder(this.name, this.email, this.address, this.mobile, response.razorpay_order_id, response.razorpay_payment_id, this.data, this.total).subscribe(data => {
           //   this._cart.deleteCart(this.cartId).subscribe(data => {

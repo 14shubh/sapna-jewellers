@@ -5,6 +5,7 @@ import { ProductService } from '../../service/product.service';
 import { UpdateDataService } from '../../service/update-data.service';
 import { CartService } from '../../service/cart.service';
 import { FavoriteService } from 'src/app/service/favorite.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-products',
@@ -15,10 +16,13 @@ export class ProductsComponent implements OnInit {
   ProductList: any;
   ids:any[]=[];
 
-  constructor(private _authenticate:AuthenticateService, private _router:Router, private _product:ProductService, private _update_data:UpdateDataService, private _cart:CartService,private _favorite:FavoriteService) { 
+  constructor(private _authenticate:AuthenticateService, private _router:Router, private _product:ProductService, private _update_data:UpdateDataService, private _cart:CartService,private _favorite:FavoriteService, private _spinner:NgxSpinnerService ){ 
+    this._spinner.show();
+    
     this._product.ProductList().subscribe(data => {
       this.ProductList = data;
       console.log(this.ProductList);
+      this._spinner.hide();
     });
   }
 

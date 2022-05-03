@@ -3,6 +3,7 @@ import { UpdateDataService } from '../../service/update-data.service';
 import { CartService } from '../../service/cart.service';
 import { Router } from '@angular/router';
 import { AuthenticateService } from '../../service/Authenticate.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-single-product',
@@ -12,9 +13,14 @@ import { AuthenticateService } from '../../service/Authenticate.service';
 export class SingleProductComponent implements OnInit {
   data:any;
   ids: any[]=[];
-  constructor(private _update_data:UpdateDataService, private _cart:CartService, private _router:Router, private _authenticate:AuthenticateService) { 
+  constructor(private _update_data:UpdateDataService, private _cart:CartService, private _router:Router, private _authenticate:AuthenticateService, private _spinner:NgxSpinnerService) { 
+    
+    this._spinner.show()
+
     this.data = this._update_data.getData();
     console.log(this.data);
+
+    this._spinner.hide();
   }
   userId = localStorage.getItem('UserLoginId'); 
   AddToCart(productId: any) {
@@ -22,6 +28,7 @@ export class SingleProductComponent implements OnInit {
   
     // console.log(productId + " " + this.userID);
     if (this._authenticate.checkToken()) {
+      this._spinner.show()
       this._cart.FetchCart(localStorage.getItem("UserLoginId")).subscribe(data=>{
         for(let item of data[0].products){
           this.ids.push(item._id)
@@ -42,7 +49,7 @@ export class SingleProductComponent implements OnInit {
           );
         }else{alert("Already Added")}  
     
-     
+     this._spinner.hide();
     })
     } else {
       this._router.navigate(['sign-in']);

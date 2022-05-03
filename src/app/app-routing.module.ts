@@ -17,6 +17,9 @@ import { PlaceorderComponent } from './customer/placeorder/placeorder.component'
 import { UserProfileComponent } from './customer/user-profile/user-profile.component';
 import { CategoryComponent } from './customer/category/category.component';
 import { AnkletsComponent } from './customer/categoryComponents/anklets/anklets.component';
+import { ProfileComponent } from './customer/UserComponent/profile/profile.component';
+import { EditComponent } from './customer/UserComponent/edit/edit.component';
+import { DeleteComponent } from './customer/UserComponent/delete/delete.component';
  
 const routes: Routes = [
   {
@@ -91,6 +94,24 @@ const routes: Routes = [
       {
         path: 'profile',
         component: UserProfileComponent,
+        children:[
+          {
+            path: '',
+            component:ProfileComponent
+          },
+          {
+            path: 'profile',
+            component:ProfileComponent
+          },
+          {
+            path: 'edit-profile',
+            component:EditComponent
+          },
+          {
+            path:'delete-profile',
+            component:DeleteComponent
+          }
+        ],
         canActivate: [AuthGuard]
       }
     ]
